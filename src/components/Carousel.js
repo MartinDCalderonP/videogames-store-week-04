@@ -23,6 +23,14 @@ export default function Carousel() {
 		}, 5000);
 	}, [slides.length]);
 
+	const handlePreviousClick = () => {
+		setCurrent((current) => current - 1);
+	};
+
+	const handleNextClick = () => {
+		setCurrent((current) => current + 1);
+	};
+
 	const handleDotClick = (i) => {
 		setCurrent(i);
 	};
@@ -37,11 +45,11 @@ export default function Carousel() {
 				/>
 			</div>
 
-			<div className={styles.previous}>
+			<div className={styles.previous} onClick={handlePreviousClick}>
 				<FontAwesomeIcon icon={faChevronLeft} />
 			</div>
 
-			<div className={styles.next}>
+			<div className={styles.next} onClick={handleNextClick}>
 				<FontAwesomeIcon icon={faChevronRight} />
 			</div>
 
@@ -49,7 +57,9 @@ export default function Carousel() {
 				{slides?.map((item, i) => {
 					return (
 						<span
-							className={styles.dot}
+							className={
+								styles.dot + (current === i ? ` ${styles.active}` : '')
+							}
 							key={i}
 							onClick={() => handleDotClick(i)}
 						/>
