@@ -1,0 +1,18 @@
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: var(--backgroundColor);
+	border-top: 1px solid var(--detailsColor);
+	border-bottom: 1px solid var(--detailsColor);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	height: 50px;
+
+	> div {
+		width: 70px;
+		display: flex;
+		justify-content: space-between;
+		margin-left: 30px;
+		color: black;
+	}
+}
