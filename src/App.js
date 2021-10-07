@@ -1,14 +1,23 @@
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import CardsContainer from './components/CardsContainer';
-import Footer from './components/Footer';
 import Carousel from './components/Carousel';
+import Footer from './components/Footer';
 
 function App() {
+	const [page, setPage] = useState('home');
+
 	return (
 		<div className="App">
 			<Navbar />
-			<Carousel />
-			<CardsContainer />
+			{page === 'home' ? (
+				<>
+					<Carousel />
+					<CardsContainer />
+				</>
+			) : (
+				<></>
+			)}
 			<Footer />
 		</div>
 	);
