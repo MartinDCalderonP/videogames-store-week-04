@@ -35,9 +35,11 @@
 
 	.dotsContainer {
 		position: absolute;
-		bottom: 20px;
-		margin-left: -50px;
+		text-align: center;
+		width: 80px;
+		margin-left: -40px;
 		left: 50%;
+		bottom: 20px;
 
 		.dot {
 			cursor: pointer;
