@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/Chevron.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faChevronLeft,
@@ -7,7 +8,14 @@ import {
 
 export default function Chevron({ className, onClick, orientation }) {
 	return (
-		<div className={className} onClick={onClick}>
+		<div
+			className={
+				((orientation === 'left' && styles.previous) ||
+					(orientation === 'right' && styles.next)) +
+				(className ? ` ${className}` : '')
+			}
+			onClick={onClick}
+		>
 			<FontAwesomeIcon
 				icon={
 					(orientation === 'left' && faChevronLeft) ||
