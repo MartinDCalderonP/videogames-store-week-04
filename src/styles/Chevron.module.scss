@@ -1,13 +1,10 @@
-.left,
+.top,
 .right,
-.down {
+.down,
+.left {
 	display: flex;
-	align-items: center;
 	cursor: pointer;
 	position: absolute;
-	top: 50%;
-	height: 60px;
-	margin-top: -30px;
 	padding: 16px;
 	color: white;
 	font-weight: bold;
@@ -21,9 +18,25 @@
 	}
 }
 
-.left {
-	left: 0;
-	border-radius: 0 3px 3px 0;
+.top,
+.down {
+	justify-content: center;
+	width: 60px;
+	left: 50%;
+	margin-left: -30px;
+}
+
+.left,
+.right {
+	align-items: center;
+	height: 60px;
+	top: 50%;
+	margin-top: -30px;
+}
+
+.top {
+	top: 0;
+	border-radius: 0 0 3px 3px;
 }
 
 .right {
@@ -32,7 +45,11 @@
 }
 
 .down {
-	top: auto;
 	bottom: 0;
 	border-radius: 3px 3px 0 0;
+}
+
+.left {
+	left: 0;
+	border-radius: 0 3px 3px 0;
 }

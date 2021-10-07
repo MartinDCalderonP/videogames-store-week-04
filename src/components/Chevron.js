@@ -2,27 +2,30 @@ import React from 'react';
 import styles from '../styles/Chevron.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faChevronLeft,
+	faChevronUp,
 	faChevronRight,
 	faChevronDown,
+	faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Chevron({ className, onClick, orientation }) {
 	return (
 		<div
 			className={
-				((orientation === 'left' && styles.left) ||
+				((orientation === 'top' && styles.top) ||
 					(orientation === 'right' && styles.right) ||
-					(orientation === 'down' && styles.down)) +
+					(orientation === 'down' && styles.down) ||
+					(orientation === 'left' && styles.left)) +
 				(className ? ` ${className}` : '')
 			}
 			onClick={onClick}
 		>
 			<FontAwesomeIcon
 				icon={
-					(orientation === 'left' && faChevronLeft) ||
+					(orientation === 'left' && faChevronUp) ||
 					(orientation === 'right' && faChevronRight) ||
-					(orientation === 'down' && faChevronDown)
+					(orientation === 'down' && faChevronDown) ||
+					(orientation === 'left' && faChevronLeft)
 				}
 			/>
 		</div>
