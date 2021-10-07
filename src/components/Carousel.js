@@ -24,11 +24,11 @@ export default function Carousel() {
 	}, [slides.length]);
 
 	const handlePreviousClick = () => {
-		setCurrent((current) => current - 1);
+		setCurrent((current) => (current === 0 ? slides.length - 1 : current - 1));
 	};
 
 	const handleNextClick = () => {
-		setCurrent((current) => current + 1);
+		setCurrent((current) => (current === slides.length - 1 ? 0 : current + 1));
 	};
 
 	const handleDotClick = (i) => {
