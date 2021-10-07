@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Carousel.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	faChevronLeft,
-	faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
+import Chevron from './Chevron';
 
 export default function Carousel() {
 	const [current, setCurrent] = useState(0);
@@ -45,13 +41,17 @@ export default function Carousel() {
 				/>
 			</div>
 
-			<div className={styles.previous} onClick={handlePreviousClick}>
-				<FontAwesomeIcon icon={faChevronLeft} />
-			</div>
+			<Chevron
+				className={styles.previous}
+				onClick={handlePreviousClick}
+				orientation="left"
+			/>
 
-			<div className={styles.next} onClick={handleNextClick}>
-				<FontAwesomeIcon icon={faChevronRight} />
-			</div>
+			<Chevron
+				className={styles.next}
+				onClick={handleNextClick}
+				orientation="right"
+			/>
 
 			<div className={styles.dotsContainer}>
 				{slides?.map((item, i) => {
