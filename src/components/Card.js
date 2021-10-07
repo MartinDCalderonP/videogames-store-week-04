@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from '../styles/Card.module.scss';
 
-export default function Card() {
+export default function Card({ name, image }) {
 	return (
 		<div className={`${styles.card} ${styles.appearCard}`}>
-			<h1>TITLE</h1>
-			<img
-				src="https://image.api.playstation.com/vulcan/ap/rnd/202009/0123/bF1qmEL5RM6aMfL0oLcxRe8B.png"
-				alt="ALT"
-			/>
+			<p>{name}</p>
+			<div className={styles.cardImage}>
+				<img src={image} alt={name} />
+			</div>
 		</div>
 	);
 }
