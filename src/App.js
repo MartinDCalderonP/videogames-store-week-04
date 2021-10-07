@@ -9,6 +9,10 @@ function App() {
 	const [page, setPage] = useState('home');
 	const [post, setPost] = useState('');
 
+	const handleToHome = (home) => {
+		setPage(home);
+	};
+
 	const onCardDetail = (post) => {
 		setPage('detail');
 		setPost(post);
@@ -16,7 +20,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Navbar />
+			<Navbar toHome={handleToHome} />
 
 			{page === 'home' && (
 				<>
