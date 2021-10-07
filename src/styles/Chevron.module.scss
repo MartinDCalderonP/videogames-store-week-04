@@ -3,6 +3,8 @@
 .down,
 .left {
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	cursor: pointer;
 	position: absolute;
 	padding: 16px;
@@ -20,7 +22,6 @@
 
 .top,
 .down {
-	justify-content: center;
 	width: 60px;
 	left: 50%;
 	margin-left: -30px;
@@ -28,7 +29,6 @@
 
 .left,
 .right {
-	align-items: center;
 	height: 60px;
 	top: 50%;
 	margin-top: -30px;
