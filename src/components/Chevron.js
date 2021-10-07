@@ -22,7 +22,7 @@ export default function Chevron({ className, onClick, orientation }) {
 		>
 			<FontAwesomeIcon
 				icon={
-					(orientation === 'left' && faChevronUp) ||
+					(orientation === 'top' && faChevronUp) ||
 					(orientation === 'right' && faChevronRight) ||
 					(orientation === 'down' && faChevronDown) ||
 					(orientation === 'left' && faChevronLeft)
