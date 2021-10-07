@@ -1,17 +1,20 @@
 .left,
 .right,
 .down {
+	display: flex;
+	align-items: center;
 	cursor: pointer;
 	position: absolute;
 	top: 50%;
-	width: auto;
-	margin-top: -22px;
+	height: 60px;
+	margin-top: -30px;
 	padding: 16px;
 	color: white;
 	font-weight: bold;
 	font-size: 18px;
-	transition: 0.6s ease;
+	transition: all 0.3s ease;
 	user-select: none;
+	box-sizing: border-box;
 
 	&:hover {
 		background-color: black;
@@ -29,6 +32,7 @@
 }
 
 .down {
+	top: auto;
 	bottom: 0;
 	border-radius: 3px 3px 0 0;
 }
