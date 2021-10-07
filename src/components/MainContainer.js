@@ -34,8 +34,8 @@ export default function MainContainer({ toDetail }) {
 		setFetchUrl(posts.next);
 	};
 
-	const handleToDetail = (post) => {
-		toDetail(post);
+	const handleToDetail = (postId) => {
+		toDetail(postId);
 	};
 
 	return (
@@ -57,7 +57,7 @@ export default function MainContainer({ toDetail }) {
 							key={post.id}
 							name={post.name}
 							image={post.background_image}
-							toDetail={() => handleToDetail(post)}
+							toDetail={() => handleToDetail(post.id)}
 						/>
 					))}
 			</div>

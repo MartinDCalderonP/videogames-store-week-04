@@ -7,15 +7,15 @@ import Footer from './components/Footer';
 
 function App() {
 	const [page, setPage] = useState('home');
-	const [post, setPost] = useState('');
+	const [postId, setPostId] = useState('');
 
 	const handleToHome = (home) => {
 		setPage(home);
 	};
 
-	const handleToDetail = (post) => {
+	const handleToDetail = (postId) => {
 		setPage('detail');
-		setPost(post);
+		setPostId(postId);
 	};
 
 	return (
@@ -29,7 +29,7 @@ function App() {
 				</>
 			)}
 
-			{page === 'detail' && <Detail post={post} />}
+			{page === 'detail' && <Detail postId={postId} />}
 
 			<Footer />
 		</div>
