@@ -1,5 +1,6 @@
-.previous,
-.next {
+.left,
+.right,
+.down {
 	cursor: pointer;
 	position: absolute;
 	top: 50%;
@@ -17,12 +18,17 @@
 	}
 }
 
-.previous {
+.left {
 	left: 0;
 	border-radius: 0 3px 3px 0;
 }
 
-.next {
+.right {
 	right: 0;
 	border-radius: 3px 0 0 3px;
+}
+
+.down {
+	bottom: 0;
+	border-radius: 3px 3px 0 0;
 }
