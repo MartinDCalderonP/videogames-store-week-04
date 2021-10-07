@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '../styles/Card.module.scss';
 
-export default function Card({ name, image, cardDetail }) {
+export default function Card({ name, image, toDetail }) {
 	const handleCardClick = () => {
-		cardDetail(true);
+		toDetail(true);
 	};
 
 	return (

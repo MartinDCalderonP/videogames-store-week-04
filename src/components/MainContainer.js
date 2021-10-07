@@ -4,7 +4,7 @@ import API_KEY from '../Keys';
 import Chevron from './Chevron';
 import Card from './Card';
 
-export default function MainContainer({ cardDetail }) {
+export default function MainContainer({ toDetail }) {
 	const url = 'https://api.rawg.io/api/games?page_size=8&key=' + API_KEY;
 	const [fetchUrl, setFetchUrl] = useState(url);
 	const [posts, setPosts] = useState(undefined);
@@ -34,8 +34,8 @@ export default function MainContainer({ cardDetail }) {
 		setFetchUrl(posts.next);
 	};
 
-	const onCardDetail = (post) => {
-		cardDetail(post);
+	const handleToDetail = (post) => {
+		toDetail(post);
 	};
 
 	return (
@@ -57,7 +57,7 @@ export default function MainContainer({ cardDetail }) {
 							key={post.id}
 							name={post.name}
 							image={post.background_image}
-							cardDetail={() => onCardDetail(post)}
+							toDetail={() => handleToDetail(post)}
 						/>
 					))}
 			</div>

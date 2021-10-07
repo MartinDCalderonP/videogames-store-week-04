@@ -13,7 +13,7 @@ function App() {
 		setPage(home);
 	};
 
-	const onCardDetail = (post) => {
+	const handleToDetail = (post) => {
 		setPage('detail');
 		setPost(post);
 	};
@@ -25,7 +25,7 @@ function App() {
 			{page === 'home' && (
 				<>
 					<Carousel />
-					<MainContainer cardDetail={onCardDetail} />
+					<MainContainer toDetail={handleToDetail} />
 				</>
 			)}
 
