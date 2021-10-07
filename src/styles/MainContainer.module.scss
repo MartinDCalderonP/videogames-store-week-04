@@ -1,0 +1,19 @@
+.mainContainer {
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	.previous,
+	.next {
+		&:hover {
+			background-color: darkblue;
+		}
+	}
+}
+
+.cardsContainer {
+	margin: 20px 50px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
