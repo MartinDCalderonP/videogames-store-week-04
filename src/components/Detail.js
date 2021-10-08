@@ -1,12 +1,184 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/Detail.module.scss';
+import post from '../jsons/post.json';
+import Chevron from './Chevron';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faStar as solidStar,
+	faDesktop,
+	faExternalLinkAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import { faStar as outlineStar } from '@fortawesome/free-regular-svg-icons';
+import {
+	faPlaystation,
+	faXbox,
+	faApple,
+} from '@fortawesome/free-brands-svg-icons';
 
-export default function Detail({
-	postId
-}) {
+export default function Detail(
+	{
+		// postId
+	}
+) {
+	const [expandedText, setExpandedText] = useState(false);
+
+	const handleExpandText = () => {
+		setExpandedText(!expandedText);
+	};
+
+	let ratingStars = [];
+
+	for (let i = 0; i < 5; i++) {
+		if (i < post.rating_top) {
+			ratingStars.push(<FontAwesomeIcon key={`star${i}`} icon={solidStar} />);
+		} else {
+			ratingStars.push(<FontAwesomeIcon key={`star${i}`} icon={outlineStar} />);
+		}
+	}
+
+	const getNamesFromArray = (array) => {
+		let names = [];
+
+		array?.map((item) => names.push(item.name));
+
+		return names.join(', ');
+	};
+
+	const showMinimumRequirements = (platforms) => {
+		let lines = [];
+		let platform = platforms.find((item) => item.platform.name === 'PC');
+
+		let minimumRequirements = platform.requirements.minimum
+			.replaceAll(':', ': ')
+			.split('\n');
+
+		for (let i = 1; i < minimumRequirements.length; i++) {
+			lines.push(
+				<span className={styles.lines} key={`line${i}`}>
+					- {minimumRequirements[i]}.
+				</span>
+			);
+		}
+
+		return lines;
+	};
+
+	const showPlatformsIcons = (platforms) => {
+		let platformsNames = [];
+		let iconsToShow = [];
+
+		platforms?.map((item) => platformsNames.push(item.platform.name));
+
+		const icons = {
+			PC: <FontAwesomeIcon key="pcIcon" icon={faDesktop} />,
+			PlayStation: <FontAwesomeIcon key="psIcon" icon={faPlaystation} />,
+			Xbox: <FontAwesomeIcon key="xboxIcon" icon={faXbox} />,
+			'Apple Macintosh': <FontAwesomeIcon key="appleIcon" icon={faApple} />,
+		};
+
+		for (let i = 0; i < platformsNames.length; i++) {
+			iconsToShow.push(icons[platformsNames[i]]);
+		}
+
+		return iconsToShow;
+	};
+
+	const showESRB = (esrbId) => {
+		const logos = {
+			1: 'https://www.esrb.org/wp-content/uploads/2019/05/Everyone_SP.svg',
+			2: 'https://www.esrb.org/wp-content/uploads/2019/05/Everyone10_SP.svg',
+			3: 'https://www.esrb.org/wp-content/uploads/2019/05/Teen_SP.svg',
+			4: 'https://www.esrb.org/wp-content/uploads/2019/05/Mature_SP.svg',
+			5: 'https://www.esrb.org/wp-content/uploads/2019/05/Adult_SP.svg',
+		};
+
+		return logos[esrbId];
+	};
+
 	return (
 		<div className={styles.container}>
-			<h1>{postId}</h1>
+			{post && (
+				<>
+					<h1>{post.name}</h1>
+
+					<div className={styles.row}>
+						<div className={styles.leftColumn}>
+							<div className={styles.image}>
+								<img src={post.background_image} alt={post.name} />
+								<h1>{post.reactions[0]}</h1>
+							</div>
+
+							<div
+								className={`${styles.description} ${
+									!expandedText ? '' : styles.active
+								}`}
+							>
+								<p>{post.description_raw}</p>
+
+								<Chevron
+									className={styles.expandText}
+									onClick={handleExpandText}
+									orientation={!expandedText ? 'down' : 'top'}
+								/>
+							</div>
+						</div>
+
+						<div className={styles.dividerColumn}></div>
+
+						<div className={styles.rightColumn}>
+							<div className={styles.rating}>
+								<h2>{post.rating}</h2>
+								<div>{ratingStars}</div>
+							</div>
+
+							<div className={styles.information}>
+								<h3>Game Details</h3>
+
+								<p>
+									<b>Title: </b>
+									{post.name_original}
+								</p>
+
+								<p>
+									<b>Genre: </b>
+									{getNamesFromArray(post.genres)}
+								</p>
+
+								<p>
+									<b>Developer: </b>
+									{getNamesFromArray(post.developers)}
+								</p>
+
+								<p>
+									<b>Publisher: </b>
+									{getNamesFromArray(post.publishers)}
+								</p>
+
+								<p>
+									<b>PC Minimum Requirements: </b>
+									{showMinimumRequirements(post.platforms)}
+								</p>
+
+								<div className={styles.platformsIcons}>
+									{showPlatformsIcons(post.parent_platforms)}
+								</div>
+
+								<div className={styles.esrb}>
+									<img
+										src={showESRB(post.esrb_rating.id)}
+										alt={post.esrb_rating.name}
+									/>
+								</div>
+
+								<a href={post.website}>
+									Official website
+									<FontAwesomeIcon icon={faExternalLinkAlt} />
+								</a>
+							</div>
+						</div>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }

@@ -1,0 +1,133 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px 0px;
+
+	.row {
+		display: flex;
+		width: 80vw;
+		margin: 20px 0px;
+	}
+
+	.leftColumn {
+		flex: 0.7;
+		display: flex;
+		flex-direction: column;
+
+		.image {
+			padding: 15px;
+			max-height: 300px;
+			background: rgba(0, 0, 0, 0.3);
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		.description {
+			position: relative;
+			padding: 15px;
+			background: rgba(156, 12, 12, 0.3);
+			height: 110px;
+			transition: all 0.3s ease-in;
+
+			> p {
+				font-size: 1rem;
+				text-align: justify;
+				max-height: 95px;
+				overflow: hidden;
+				transition: all 0.3s ease-in;
+			}
+
+			&.active {
+				height: fit-content;
+				padding-bottom: 30px;
+
+				> p {
+					max-height: none;
+				}
+			}
+
+			.expandText {
+				top: auto;
+				bottom: 0;
+				height: 30px;
+
+				&:hover {
+					background-color: transparent;
+				}
+			}
+		}
+	}
+
+	.dividerColumn {
+		width: 20px;
+	}
+
+	.rightColumn {
+		flex: 0.3;
+
+		> * {
+			background: rgba(0, 0, 0, 0.3);
+		}
+
+		.rating {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 10px;
+			font-size: 2rem;
+		}
+
+		.information {
+			margin-top: 20px;
+			padding: 20px;
+			font-size: 0.9rem;
+
+			> h3 {
+				margin-bottom: 20px;
+			}
+
+			> p {
+				margin: 5px 0px;
+				color: #a8a8a8;
+
+				.lines {
+					display: block;
+					color: #a8a8a8;
+				}
+			}
+
+			.platformsIcons {
+				display: flex;
+				justify-content: space-evenly;
+				margin: 20px 0px;
+				font-size: 1.5rem;
+			}
+
+			.esrb {
+				display: flex;
+				justify-content: center;
+
+				img {
+					width: 30%;
+				}
+			}
+
+			a {
+				display: block;
+				margin-top: 20px;
+				padding: 4px 8px;
+				text-decoration: none;
+				background-color: rgba(0, 0, 139, 0.3);
+
+				> svg {
+					margin-left: 5px;
+				}
+			}
+		}
+	}
+}
