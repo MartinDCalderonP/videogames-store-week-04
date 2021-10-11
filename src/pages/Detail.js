@@ -14,6 +14,7 @@ import {
 	faXbox,
 	faApple,
 } from '@fortawesome/free-brands-svg-icons';
+import RatingStars from '../components/RatingStars';
 import ESRB from '../components/ESRB';
 import data from '../jsons/post.json';
 
@@ -42,22 +43,6 @@ export default function Detail({ postId }) {
 
 	const handleExpandText = () => {
 		setExpandedText(!expandedText);
-	};
-
-	const showRatingStars = () => {
-		let ratingStars = [];
-
-		for (let i = 0; i < 5; i++) {
-			if (i < post.rating_top) {
-				ratingStars.push(<FontAwesomeIcon key={`star${i}`} icon={solidStar} />);
-			} else {
-				ratingStars.push(
-					<FontAwesomeIcon key={`star${i}`} icon={outlineStar} />
-				);
-			}
-		}
-
-		return ratingStars;
 	};
 
 	const getNamesFromArray = (array) => {
@@ -155,10 +140,7 @@ export default function Detail({ postId }) {
 						<div className={styles.dividerColumn}></div>
 
 						<div className={styles.rightColumn}>
-							<div className={styles.rating}>
-								<h2>{post.rating}</h2>
-								<div>{showRatingStars()}</div>
-							</div>
+							<RatingStars rating={post.rating} top={post.rating_top} />
 
 							<div className={styles.information}>
 								<h3>Game Details</h3>
