@@ -24,7 +24,7 @@ function App() {
 
 			{page === 'home' && (
 				<>
-					<Carousel />
+					<Carousel toDetail={handleToDetail} />
 					<MainContainer toDetail={handleToDetail} />
 				</>
 			)}

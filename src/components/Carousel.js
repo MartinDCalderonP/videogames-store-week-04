@@ -4,7 +4,7 @@ import API_KEY from '../Keys';
 import Chevron from './Chevron';
 import data from '../jsons/carousel.json';
 
-export default function Carousel() {
+export default function Carousel({ toDetail }) {
 	const serverUrl = 'https://api.rawg.io/api/games?&key=' + API_KEY;
 	const fetchUrl =
 		serverUrl + '&dates=2021-01-01,2021-10-01&page_size=3&ordering=-metacritic';
@@ -38,6 +38,10 @@ export default function Carousel() {
 			}, 5000);
 	}, [posts?.results.length]);
 
+	const handleCarouselItemClick = (postId) => {
+		toDetail(postId);
+	};
+
 	const handlePreviousClick = () => {
 		setCurrent((current) =>
 			current === 0 ? posts?.results.length - 1 : current - 1
@@ -59,7 +63,10 @@ export default function Carousel() {
 			{loading && <h1>Loading...</h1>}
 
 			{posts && (
-				<div className={`${styles.carouselItem} ${styles.fade}`}>
+				<div
+					className={`${styles.carouselItem} ${styles.fade}`}
+					onClick={() => handleCarouselItemClick(posts?.results[current].id)}
+				>
 					<h1>{posts?.results[current].name}</h1>
 
 					<img
