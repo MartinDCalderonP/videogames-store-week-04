@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/Carousel.module.scss';
 import API_KEY from '../Keys';
 import Chevron from './Chevron';
-import data from '../jsons/carousel.json';
 
 export default function Carousel({ toDetail }) {
-	const serverUrl = 'https://api.rawg.io/api/games?&key=' + API_KEY;
-	const fetchUrl =
-		serverUrl + '&dates=2021-01-01,2021-10-01&page_size=3&ordering=-metacritic';
-	const [posts, setPosts] = useState(data);
+	const fetchUrl = `https://api.rawg.io/api/games?&dates=2021-01-01,2021-10-01&page_size=3&ordering=-metacritic&key=${API_KEY}`;
+	const [posts, setPosts] = useState(undefined);
 	const [loading, setLoading] = useState(false);
 	const [current, setCurrent] = useState(0);
 
@@ -26,8 +23,8 @@ export default function Carousel({ toDetail }) {
 			}
 		};
 
-		// getPosts();
-	}, [fetchUrl, posts]);
+		getPosts();
+	}, [fetchUrl]);
 
 	useEffect(() => {
 		posts?.results.length > 0 &&
