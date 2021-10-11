@@ -1,0 +1,77 @@
+.commentBox {
+	width: 80vw;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+
+	> .commentArea {
+		border: 2px solid #303030;
+		border-radius: 5px;
+		padding: 8px 28px 8px 16px;
+		font-size: 16px;
+		outline-style: none;
+		transition: all 0.3s linear;
+		box-sizing: border-box;
+		resize: none;
+		background-color: var(--backgroundColor);
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+
+		&:focus {
+			border-color: blue;
+		}
+	}
+
+	> .commentButton {
+		background-color: var(--backgroundColor);
+		border: 1px solid var(--detailsColor);
+		margin: 10px 0px 20px;
+		padding: 5px 20px;
+		font-size: 1.2rem;
+		align-self: flex-end;
+		cursor: pointer;
+		transition: all 0.3s linear;
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+	}
+}
+
+.commentsContainer {
+	width: 80vw;
+	margin-bottom: 50px;
+	border-top: 2px solid darkblue;
+	padding-top: 20px;
+
+	> * {
+		margin-bottom: 20px;
+	}
+
+	> div {
+		width: 100%;
+		background-color: var(--backgroundColor);
+		border: 2px solid #303030;
+		border-radius: 5px;
+		padding: 8px 28px 8px 16px;
+		font-size: 16px;
+		box-sizing: border-box;
+		transition: all 0.3s linear;
+
+		> p {
+			&:first-child {
+				margin-bottom: 10px;
+			}
+		}
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+
+		&:focus {
+			border-color: blue;
+		}
+	}
+}

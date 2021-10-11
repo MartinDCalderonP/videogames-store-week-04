@@ -116,6 +116,8 @@ export default function Detail({ postId }) {
 							</div>
 						</div>
 					</div>
+
+					<Comments postId={post.id} />
 				</>
 			)}
 		</div>
