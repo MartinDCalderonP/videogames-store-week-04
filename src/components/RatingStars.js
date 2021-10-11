@@ -16,7 +16,7 @@ export default function RatingStars({ rating, top }) {
 	}
 
 	return (
-		<div key="2" className={styles.rating}>
+		<div className={styles.rating}>
 			<h2>{rating}</h2>
 			<div>{ratingStars}</div>
 		</div>
