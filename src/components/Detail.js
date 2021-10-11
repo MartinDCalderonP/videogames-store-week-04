@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/Detail.module.scss';
-import post from '../jsons/post.json';
+import API_KEY from '../Keys';
 import Chevron from './Chevron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,26 +15,48 @@ import {
 	faApple,
 } from '@fortawesome/free-brands-svg-icons';
 
-export default function Detail(
-	{
-		// postId
-	}
-) {
+export default function Detail({ postId }) {
+	const fetchUrl = `https://api.rawg.io/api/games/${postId}?key=${API_KEY}`;
+	const [post, setPost] = useState(undefined);
+	const [loading, setLoading] = useState(false);
 	const [expandedText, setExpandedText] = useState(false);
+
+	useEffect(() => {
+		const getPost = async () => {
+			setLoading(true);
+
+			try {
+				const response = await fetch(fetchUrl);
+				const result = await response.json();
+				setPost(result);
+				setLoading(false);
+			} catch (err) {
+				console.log(`${err}. Try again later.`);
+			}
+		};
+
+		getPost();
+	}, [fetchUrl]);
 
 	const handleExpandText = () => {
 		setExpandedText(!expandedText);
 	};
 
-	let ratingStars = [];
+	const showRatingStars = () => {
+		let ratingStars = [];
 
-	for (let i = 0; i < 5; i++) {
-		if (i < post.rating_top) {
-			ratingStars.push(<FontAwesomeIcon key={`star${i}`} icon={solidStar} />);
-		} else {
-			ratingStars.push(<FontAwesomeIcon key={`star${i}`} icon={outlineStar} />);
+		for (let i = 0; i < 5; i++) {
+			if (i < post.rating_top) {
+				ratingStars.push(<FontAwesomeIcon key={`star${i}`} icon={solidStar} />);
+			} else {
+				ratingStars.push(
+					<FontAwesomeIcon key={`star${i}`} icon={outlineStar} />
+				);
+			}
 		}
-	}
+
+		return ratingStars;
+	};
 
 	const getNamesFromArray = (array) => {
 		let names = [];
@@ -42,6 +64,16 @@ export default function Detail(
 		array?.map((item) => names.push(item.name));
 
 		return names.join(', ');
+	};
+
+	const haveMinimumRequirements = (platforms) => {
+		let platform = platforms.find((item) => item.platform.name === 'PC');
+
+		if (platform.requirements.minimum) {
+			return true;
+		} else {
+			return false;
+		}
 	};
 
 	const showMinimumRequirements = (platforms) => {
@@ -97,7 +129,9 @@ export default function Detail(
 
 	return (
 		<div className={styles.container}>
-			{post && (
+			{loading && <h1>Loading...</h1>}
+
+			{!loading && post && (
 				<>
 					<h1>{post.name}</h1>
 
@@ -128,7 +162,7 @@ export default function Detail(
 						<div className={styles.rightColumn}>
 							<div className={styles.rating}>
 								<h2>{post.rating}</h2>
-								<div>{ratingStars}</div>
+								<div>{showRatingStars()}</div>
 							</div>
 
 							<div className={styles.information}>
@@ -154,10 +188,12 @@ export default function Detail(
 									{getNamesFromArray(post.publishers)}
 								</p>
 
-								<p>
-									<b>PC Minimum Requirements: </b>
-									{showMinimumRequirements(post.platforms)}
-								</p>
+								{haveMinimumRequirements(post.platforms) && (
+									<p>
+										<b>PC Minimum Requirements: </b>
+										{showMinimumRequirements(post.platforms)}
+									</p>
+								)}
 
 								<div className={styles.platformsIcons}>
 									{showPlatformsIcons(post.parent_platforms)}
