@@ -8,12 +8,13 @@ import RatingStars from '../components/RatingStars';
 import MinimumRequirements from '../components/MinimumRequirements';
 import PlatformIcons from '../components/PlatformIcons';
 import ESRB from '../components/ESRB';
+import Comments from '../components/Comments';
 import data from '../jsons/post.json';
 
 export default function Detail({ postId }) {
 	const fetchUrl = `https://api.rawg.io/api/games/${postId}?key=${API_KEY}`;
-	const [post, setPost] = useState(data);
 	const [loading, setLoading] = useState(false);
+	const [post, setPost] = useState(data);
 	const [expandedText, setExpandedText] = useState(false);
 
 	useEffect(() => {

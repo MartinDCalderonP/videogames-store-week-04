@@ -7,20 +7,20 @@ export default function Comments({ postId }) {
 	const [comments, setComments] = useState([]);
 	const [commentAreaValue, setCommentAreaValue] = useState(undefined);
 
-	const getComments = async () => {
-		setLoading(true);
-
-		try {
-			const response = await fetch(fetchUrl);
-			const result = await response.json();
-			setComments(result);
-			setLoading(false);
-		} catch (err) {
-			console.log(`${err}. Try again later.`);
-		}
-	};
-
 	useEffect(() => {
+		const getComments = async () => {
+			setLoading(true);
+
+			try {
+				const response = await fetch(fetchUrl);
+				const result = await response.json();
+				setComments(result);
+				setLoading(false);
+			} catch (err) {
+				console.log(`${err}. Try again later.`);
+			}
+		};
+
 		getComments();
 	}, []);
 
@@ -54,9 +54,21 @@ export default function Comments({ postId }) {
 			const result = await response.json();
 
 			if (result) {
-				console.log(result);
 				getComments();
 			}
+		} catch (err) {
+			console.log(`${err}. Try again later.`);
+		}
+	};
+
+	const getComments = async () => {
+		setLoading(true);
+
+		try {
+			const response = await fetch(fetchUrl);
+			const result = await response.json();
+			setComments(result);
+			setLoading(false);
 		} catch (err) {
 			console.log(`${err}. Try again later.`);
 		}
