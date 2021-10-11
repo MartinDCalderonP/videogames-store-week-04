@@ -64,7 +64,9 @@ export default function Carousel({ toDetail }) {
 					className={`${styles.carouselItem} ${styles.fade}`}
 					onClick={() => handleCarouselItemClick(posts?.results[current].id)}
 				>
-					<h1>{posts?.results[current].name}</h1>
+
+					<div className={styles.triangle}></div>
+					<h2>Top Rated </h2>
 
 					<img
 						src={posts?.results[current].background_image}
