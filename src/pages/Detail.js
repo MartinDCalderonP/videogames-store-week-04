@@ -14,10 +14,12 @@ import {
 	faXbox,
 	faApple,
 } from '@fortawesome/free-brands-svg-icons';
+import ESRB from '../components/ESRB';
+import data from '../jsons/post.json';
 
 export default function Detail({ postId }) {
 	const fetchUrl = `https://api.rawg.io/api/games/${postId}?key=${API_KEY}`;
-	const [post, setPost] = useState(undefined);
+	const [post, setPost] = useState(data);
 	const [loading, setLoading] = useState(false);
 	const [expandedText, setExpandedText] = useState(false);
 
@@ -35,7 +37,7 @@ export default function Detail({ postId }) {
 			}
 		};
 
-		getPost();
+		// getPost();
 	}, [fetchUrl]);
 
 	const handleExpandText = () => {
@@ -120,18 +122,6 @@ export default function Detail({ postId }) {
 		return iconsToShow;
 	};
 
-	const showESRB = (esrbId) => {
-		const logos = {
-			1: 'https://www.esrb.org/wp-content/uploads/2019/05/Everyone_SP.svg',
-			2: 'https://www.esrb.org/wp-content/uploads/2019/05/Everyone10_SP.svg',
-			3: 'https://www.esrb.org/wp-content/uploads/2019/05/Teen_SP.svg',
-			4: 'https://www.esrb.org/wp-content/uploads/2019/05/Mature_SP.svg',
-			5: 'https://www.esrb.org/wp-content/uploads/2019/05/Adult_SP.svg',
-		};
-
-		return logos[esrbId];
-	};
-
 	return (
 		<div className={styles.container}>
 			{loading && <h1>Loading...</h1>}
@@ -199,12 +189,7 @@ export default function Detail({ postId }) {
 									{showPlatformsIcons(post.parent_platforms)}
 								</div>
 
-								<div className={styles.esrb}>
-									<img
-										src={showESRB(post.esrb_rating.id)}
-										alt={post.esrb_rating.name}
-									/>
-								</div>
+								<ESRB rating={post.esrb_rating} />
 
 								<a href={post.website}>
 									Official website
