@@ -8,6 +8,12 @@
 		&:hover {
 			background-color: darkblue;
 		}
+
+		@media (max-width: 599px) {
+			position: absolute;
+			top: auto;
+			bottom: 0;
+		}
 	}
 }
 

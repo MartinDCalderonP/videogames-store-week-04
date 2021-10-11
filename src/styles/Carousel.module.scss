@@ -21,6 +21,12 @@
 			height: 0;
 			border-top: 130px solid orange;
 			border-left: 130px solid transparent;
+
+			@media (max-width: 599px) {
+				bottom: 4px;
+				border-top: none;
+				border-bottom: 130px solid orange;
+			}
 		}
 
 		> h2 {
@@ -30,6 +36,12 @@
 			color: darkblue;
 			transform: rotate(45deg);
 			user-select: none;
+
+			@media (max-width: 599px) {
+				top: auto;
+				bottom: 35px;
+				transform: rotate(315deg);
+			}
 		}
 
 		> img {
