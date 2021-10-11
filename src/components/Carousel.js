@@ -1,30 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Carousel.module.scss';
+import API_KEY from '../Keys';
 import Chevron from './Chevron';
+import data from '../jsons/carousel.json';
 
 export default function Carousel() {
+	const serverUrl = 'https://api.rawg.io/api/games?&key=' + API_KEY;
+	const fetchUrl =
+		serverUrl + '&dates=2021-01-01,2021-10-01&page_size=3&ordering=-metacritic';
+	const [posts, setPosts] = useState(data);
+	const [loading, setLoading] = useState(false);
 	const [current, setCurrent] = useState(0);
 
-	const slides = [
-		'https://areajugones.sport.es/wp-content/uploads/2021/03/mortal-kombat-character-posters-social-featured-1080x609.jpg',
-		'https://as.com/meristation/imagenes/2020/11/10/header_image/770344721605019507.jpg',
-		'https://i2.wp.com/hipertextual.com/wp-content/uploads/2021/02/mortal-kombat.jpg',
-	];
+	useEffect(() => {
+		const getPosts = async () => {
+			setLoading(true);
+
+			try {
+				const response = await fetch(fetchUrl);
+				const result = await response.json();
+				setPosts(result);
+				setLoading(false);
+			} catch (err) {
+				console.log(`${err}. Try again later.`);
+			}
+		};
+
+		// getPosts();
+	}, [fetchUrl, posts]);
 
 	useEffect(() => {
-		setInterval(() => {
-			setCurrent((current) =>
-				current === slides.length - 1 ? 0 : current + 1
-			);
-		}, 5000);
-	}, [slides.length]);
+		posts.results.length > 0 &&
+			setInterval(() => {
+				setCurrent((current) =>
+					current === posts.results.length - 1 ? 0 : current + 1
+				);
+			}, 5000);
+	}, [posts.results.length]);
 
 	const handlePreviousClick = () => {
-		setCurrent((current) => (current === 0 ? slides.length - 1 : current - 1));
+		setCurrent((current) =>
+			current === 0 ? posts.results.length - 1 : current - 1
+		);
 	};
 
 	const handleNextClick = () => {
-		setCurrent((current) => (current === slides.length - 1 ? 0 : current + 1));
+		setCurrent((current) =>
+			current === posts.results.length - 1 ? 0 : current + 1
+		);
 	};
 
 	const handleDotClick = (i) => {
@@ -33,13 +56,18 @@ export default function Carousel() {
 
 	return (
 		<div className={styles.carousel}>
-			<div className={`${styles.carouselItem} ${styles.fade}`}>
-				<img
-					className={styles.fade}
-					src={slides[current]}
-					alt={slides[current]}
-				/>
-			</div>
+			{loading && <h1>Loading...</h1>}
+
+			{posts && (
+				<div className={`${styles.carouselItem} ${styles.fade}`}>
+					<h1>{posts.results[current].name}</h1>
+
+					<img
+						src={posts.results[current].background_image}
+						alt={posts.results[current].background_image}
+					/>
+				</div>
+			)}
 
 			<Chevron
 				className={styles.previous}
@@ -54,13 +82,13 @@ export default function Carousel() {
 			/>
 
 			<div className={styles.dotsContainer}>
-				{slides?.map((item, i) => {
+				{posts?.results.map((item, i) => {
 					return (
 						<span
 							className={
 								styles.dot + (current === i ? ` ${styles.active}` : '')
 							}
-							key={i}
+							key={`dot${i}`}
 							onClick={() => handleDotClick(i)}
 						/>
 					);
