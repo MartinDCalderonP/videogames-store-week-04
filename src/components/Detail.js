@@ -75,8 +75,6 @@ export default function Detail({ postId }) {
 				.replaceAll(':', ': ')
 				.split('\n');
 
-			console.log(minimumRequirements);
-
 			lines.push(
 				<p>
 					<b>PC Requirements: </b>
