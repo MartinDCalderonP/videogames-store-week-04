@@ -30,23 +30,23 @@ export default function Carousel() {
 	}, [fetchUrl, posts]);
 
 	useEffect(() => {
-		posts.results.length > 0 &&
+		posts?.results.length > 0 &&
 			setInterval(() => {
 				setCurrent((current) =>
-					current === posts.results.length - 1 ? 0 : current + 1
+					current === posts?.results.length - 1 ? 0 : current + 1
 				);
 			}, 5000);
-	}, [posts.results.length]);
+	}, [posts?.results.length]);
 
 	const handlePreviousClick = () => {
 		setCurrent((current) =>
-			current === 0 ? posts.results.length - 1 : current - 1
+			current === 0 ? posts?.results.length - 1 : current - 1
 		);
 	};
 
 	const handleNextClick = () => {
 		setCurrent((current) =>
-			current === posts.results.length - 1 ? 0 : current + 1
+			current === posts?.results.length - 1 ? 0 : current + 1
 		);
 	};
 
@@ -60,11 +60,11 @@ export default function Carousel() {
 
 			{posts && (
 				<div className={`${styles.carouselItem} ${styles.fade}`}>
-					<h1>{posts.results[current].name}</h1>
+					<h1>{posts?.results[current].name}</h1>
 
 					<img
-						src={posts.results[current].background_image}
-						alt={posts.results[current].background_image}
+						src={posts?.results[current].background_image}
+						alt={posts?.results[current].background_image}
 					/>
 				</div>
 			)}
