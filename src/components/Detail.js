@@ -66,33 +66,40 @@ export default function Detail({ postId }) {
 		return names.join(', ');
 	};
 
-	const haveMinimumRequirements = (platforms) => {
-		let platform = platforms.find((item) => item.platform.name === 'PC');
-
-		if (platform.requirements.minimum) {
-			return true;
-		} else {
-			return false;
-		}
-	};
-
 	const showMinimumRequirements = (platforms) => {
 		let lines = [];
 		let platform = platforms.find((item) => item.platform.name === 'PC');
 
-		let minimumRequirements = platform.requirements.minimum
-			.replaceAll(':', ': ')
-			.split('\n');
+		if (platform?.requirements.minimum) {
+			let minimumRequirements = platform.requirements.minimum
+				.replaceAll(':', ': ')
+				.split('\n');
 
-		for (let i = 1; i < minimumRequirements.length; i++) {
+			console.log(minimumRequirements);
+
 			lines.push(
+				<p>
+					<b>PC Requirements: </b>
+					{addLinesToMinimumRequirements(minimumRequirements)}
+				</p>
+			);
+
+			return lines;
+		}
+	};
+
+	const addLinesToMinimumRequirements = (minimumRequirements) => {
+		let spanLines = [];
+
+		for (let i = 0; i < minimumRequirements.length; i++) {
+			spanLines.push(
 				<span className={styles.lines} key={`line${i}`}>
 					- {minimumRequirements[i]}.
 				</span>
 			);
 		}
 
-		return lines;
+		return spanLines;
 	};
 
 	const showPlatformsIcons = (platforms) => {
@@ -188,12 +195,7 @@ export default function Detail({ postId }) {
 									{getNamesFromArray(post.publishers)}
 								</p>
 
-								{haveMinimumRequirements(post.platforms) && (
-									<p>
-										<b>PC Minimum Requirements: </b>
-										{showMinimumRequirements(post.platforms)}
-									</p>
-								)}
+								{showMinimumRequirements(post.platforms)}
 
 								<div className={styles.platformsIcons}>
 									{showPlatformsIcons(post.parent_platforms)}
