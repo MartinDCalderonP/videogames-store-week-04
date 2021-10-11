@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 
 function App() {
 	const [page, setPage] = useState('home');
-	const [postId, setPostId] = useState('');
+	const [postId, setPostId] = useState(undefined);
 
 	const handleToHome = (home) => {
 		setPage(home);
