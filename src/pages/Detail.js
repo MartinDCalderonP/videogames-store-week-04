@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Detail.module.scss';
 import API_KEY from '../Keys';
+import Spinner from '../components/Spinner';
 import Chevron from '../components/Chevron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -48,7 +49,7 @@ export default function Detail({ postId }) {
 
 	return (
 		<div className={styles.container}>
-			{loading && <h1>Loading...</h1>}
+			{loading && <Spinner />}
 
 			{!loading && post && (
 				<>

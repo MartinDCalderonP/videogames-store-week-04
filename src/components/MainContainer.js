@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/MainContainer.module.scss';
 import API_KEY from '../Keys';
 import Chevron from './Chevron';
+import Spinner from './Spinner';
 import Card from './Card';
+import data from '../jsons/posts.json';
 
 export default function MainContainer({ toDetail }) {
 	const postsUrl = `https://api.rawg.io/api/games?page_size=8&key=${API_KEY}`;
 	const [fetchUrl, setFetchUrl] = useState(postsUrl);
-	const [posts, setPosts] = useState(undefined);
 	const [loading, setLoading] = useState(false);
+	const [posts, setPosts] = useState(data);
 
 	useEffect(() => {
 		const getPosts = async () => {
@@ -24,7 +26,7 @@ export default function MainContainer({ toDetail }) {
 			}
 		};
 
-		getPosts();
+		// getPosts();
 	}, [fetchUrl]);
 
 	const handlePreviousClick = () => {
@@ -50,7 +52,7 @@ export default function MainContainer({ toDetail }) {
 			)}
 
 			<div className={styles.cardsContainer}>
-				{loading && <h1>Loading...</h1>}
+				{loading && <Spinner />}
 
 				{!loading &&
 					posts?.results.map((post) => (

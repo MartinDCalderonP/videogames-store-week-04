@@ -5,7 +5,7 @@ import Detail from './pages/Detail';
 import Footer from './components/Footer';
 
 function App() {
-	const [page, setPage] = useState('home');
+	const [page, setPage] = useState('detail');
 	const [postId, setPostId] = useState(undefined);
 
 	const handleToHome = (home) => {

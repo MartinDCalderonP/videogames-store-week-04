@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Carousel.module.scss';
 import API_KEY from '../Keys';
+import Spinner from './Spinner';
 import Chevron from './Chevron';
+import data from '../jsons/carousel.json';
 
 export default function Carousel({ toDetail }) {
 	const fetchUrl = `https://api.rawg.io/api/games?&dates=2021-01-01,2021-10-01&page_size=3&ordering=-metacritic&key=${API_KEY}`;
-	const [posts, setPosts] = useState(undefined);
 	const [loading, setLoading] = useState(false);
+	const [posts, setPosts] = useState(data);
 	const [current, setCurrent] = useState(0);
 
 	useEffect(() => {
@@ -23,7 +25,7 @@ export default function Carousel({ toDetail }) {
 			}
 		};
 
-		getPosts();
+		// getPosts();
 	}, [fetchUrl]);
 
 	useEffect(() => {
@@ -70,51 +72,53 @@ export default function Carousel({ toDetail }) {
 	};
 
 	return (
-		<div className={styles.carousel}>
-			{loading && <h1>Loading...</h1>}
+		<>
+			{loading && <Spinner />}
 
-			<Chevron
-				className={styles.previous}
-				onClick={handlePreviousClick}
-				orientation="left"
-			/>
-
-			{posts && (
-				<div
-					className={`${styles.carouselItem} ${styles.fade}`}
-					onClick={() => handleCarouselItemClick(posts?.results[current].id)}
-				>
-					<h1>{uppercaseTitle(posts?.results[current].name)}</h1>
-
-					<div className={styles.triangle}></div>
-					<h2>Top Rated </h2>
-
-					<img
-						src={posts?.results[current].background_image}
-						alt={uppercaseTitle(posts?.results[current].name)}
+			{!loading && posts && (
+				<div className={styles.carousel}>
+					<Chevron
+						className={styles.previous}
+						onClick={handlePreviousClick}
+						orientation="left"
 					/>
+
+					<div
+						className={`${styles.carouselItem} ${styles.fade}`}
+						onClick={() => handleCarouselItemClick(posts?.results[current].id)}
+					>
+						<h1>{uppercaseTitle(posts?.results[current].name)}</h1>
+
+						<div className={styles.triangle}></div>
+						<h2>Top Rated </h2>
+
+						<img
+							src={posts?.results[current].background_image}
+							alt={uppercaseTitle(posts?.results[current].name)}
+						/>
+					</div>
+
+					<Chevron
+						className={styles.next}
+						onClick={handleNextClick}
+						orientation="right"
+					/>
+
+					<div className={styles.dotsContainer}>
+						{posts?.results.map((item, i) => {
+							return (
+								<span
+									className={
+										styles.dot + (current === i ? ` ${styles.active}` : '')
+									}
+									key={`dot${i}`}
+									onClick={() => handleDotClick(i)}
+								/>
+							);
+						})}
+					</div>
 				</div>
 			)}
-
-			<Chevron
-				className={styles.next}
-				onClick={handleNextClick}
-				orientation="right"
-			/>
-
-			<div className={styles.dotsContainer}>
-				{posts?.results.map((item, i) => {
-					return (
-						<span
-							className={
-								styles.dot + (current === i ? ` ${styles.active}` : '')
-							}
-							key={`dot${i}`}
-							onClick={() => handleDotClick(i)}
-						/>
-					);
-				})}
-			</div>
-		</div>
+		</>
 	);
 }

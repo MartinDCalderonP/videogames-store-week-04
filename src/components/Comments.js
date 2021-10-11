@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Comments.module.scss';
+import Spinner from './Spinner';
 
 export default function Comments({ postId }) {
 	const fetchUrl = `https://videogames-store-db.herokuapp.com/comments?postId=${postId}`;
@@ -97,7 +98,7 @@ export default function Comments({ postId }) {
 			<div className={styles.commentsContainer}>
 				<h3>Comments:</h3>
 
-				{loading && <h3>Loading...</h3>}
+				{loading && <Spinner />}
 
 				{!loading &&
 					comments?.length > 0 &&
