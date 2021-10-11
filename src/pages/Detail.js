@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Detail.module.scss';
 import API_KEY from '../Keys';
-import Chevron from './Chevron';
+import Chevron from '../components/Chevron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faStar as solidStar,

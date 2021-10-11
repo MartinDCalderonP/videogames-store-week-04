@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
-import Carousel from './components/Carousel';
-import MainContainer from './components/MainContainer';
-import Detail from './components/Detail';
+import Home from './pages/Home';
+import Detail from './pages/Detail';
 import Footer from './components/Footer';
 
 function App() {
@@ -22,12 +21,7 @@ function App() {
 		<div className="App">
 			<Navbar toHome={handleToHome} />
 
-			{page === 'home' && (
-				<>
-					<Carousel toDetail={handleToDetail} />
-					<MainContainer toDetail={handleToDetail} />
-				</>
-			)}
+			{page === 'home' && <Home toDetail={handleToDetail} />}
 
 			{page === 'detail' && <Detail postId={postId} />}
 
