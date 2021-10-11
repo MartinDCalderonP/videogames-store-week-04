@@ -1,0 +1,380 @@
+{
+	"count": 129131,
+	"next": "https://api.rawg.io/api/games?dates=2021-01-01%2C2021-10-01&key=887008663ce845ad952181c9a7cce910&ordering=-metacritic&page=2&page_size=3",
+	"previous": null,
+	"results": [
+		{
+			"slug": "disco-elysium-final-cut",
+			"name": "Disco Elysium: Final Cut",
+			"playtime": 0,
+			"platforms": [
+				{ "platform": { "id": 4, "name": "PC", "slug": "pc" } },
+				{
+					"platform": {
+						"id": 187,
+						"name": "PlayStation 5",
+						"slug": "playstation5"
+					}
+				},
+				{ "platform": { "id": 1, "name": "Xbox One", "slug": "xbox-one" } },
+				{
+					"platform": {
+						"id": 18,
+						"name": "PlayStation 4",
+						"slug": "playstation4"
+					}
+				},
+				{
+					"platform": {
+						"id": 186,
+						"name": "Xbox Series S/X",
+						"slug": "xbox-series-x"
+					}
+				},
+				{
+					"platform": {
+						"id": 7,
+						"name": "Nintendo Switch",
+						"slug": "nintendo-switch"
+					}
+				},
+				{ "platform": { "id": 3, "name": "iOS", "slug": "ios" } },
+				{ "platform": { "id": 5, "name": "macOS", "slug": "macos" } }
+			],
+			"stores": [
+				{ "store": { "id": 1, "name": "Steam", "slug": "steam" } },
+				{ "store": { "id": 4, "name": "App Store", "slug": "apple-appstore" } },
+				{ "store": { "id": 5, "name": "GOG", "slug": "gog" } },
+				{ "store": { "id": 6, "name": "Nintendo Store", "slug": "nintendo" } }
+			],
+			"released": "2021-03-30",
+			"tba": false,
+			"background_image": "https://media.rawg.io/media/games/d74/d74392104ab2c208b719031948e0ca2a.jpg",
+			"rating": 4.72,
+			"rating_top": 5,
+			"ratings": [
+				{ "id": 5, "title": "exceptional", "count": 99, "percent": 83.9 },
+				{ "id": 3, "title": "meh", "count": 11, "percent": 9.32 },
+				{ "id": 4, "title": "recommended", "count": 7, "percent": 5.93 },
+				{ "id": 1, "title": "skip", "count": 1, "percent": 0.85 }
+			],
+			"ratings_count": 117,
+			"reviews_text_count": 1,
+			"added": 404,
+			"added_by_status": {
+				"yet": 62,
+				"owned": 53,
+				"beaten": 81,
+				"toplay": 161,
+				"dropped": 16,
+				"playing": 31
+			},
+			"metacritic": 91,
+			"suggestions_count": 221,
+			"updated": "2021-09-24T10:10:20",
+			"id": 545015,
+			"score": null,
+			"clip": null,
+			"tags": [
+				{
+					"id": 37796,
+					"name": "exclusive",
+					"slug": "exclusive",
+					"language": "eng",
+					"games_count": 4513,
+					"image_background": "https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg"
+				}
+			],
+			"esrb_rating": null,
+			"user_game": null,
+			"reviews_count": 118,
+			"saturated_color": "0f0f0f",
+			"dominant_color": "0f0f0f",
+			"short_screenshots": [
+				{
+					"id": -1,
+					"image": "https://media.rawg.io/media/games/d74/d74392104ab2c208b719031948e0ca2a.jpg"
+				},
+				{
+					"id": 3037617,
+					"image": "https://media.rawg.io/media/screenshots/08b/08b7851b1870e9c807ae958466b3601e.jpg"
+				},
+				{
+					"id": 3037618,
+					"image": "https://media.rawg.io/media/screenshots/2dc/2dc62b45d0d4b7f53fa2b0781bd4f322.jpg"
+				},
+				{
+					"id": 3037619,
+					"image": "https://media.rawg.io/media/screenshots/2ae/2ae6ac03d22a5ff9ee44a3ab59c45db1.jpg"
+				},
+				{
+					"id": 3037620,
+					"image": "https://media.rawg.io/media/screenshots/95e/95e31079edc090b09edcb7f778820375.jpg"
+				}
+			],
+			"parent_platforms": [
+				{ "platform": { "id": 1, "name": "PC", "slug": "pc" } },
+				{
+					"platform": { "id": 2, "name": "PlayStation", "slug": "playstation" }
+				},
+				{ "platform": { "id": 3, "name": "Xbox", "slug": "xbox" } },
+				{ "platform": { "id": 4, "name": "iOS", "slug": "ios" } },
+				{ "platform": { "id": 5, "name": "Apple Macintosh", "slug": "mac" } },
+				{ "platform": { "id": 7, "name": "Nintendo", "slug": "nintendo" } }
+			],
+			"genres": [{ "id": 5, "name": "RPG", "slug": "role-playing-games-rpg" }]
+		},
+		{
+			"slug": "final-fantasy-vii-remake-intergrade",
+			"name": "FINAL FANTASY VII REMAKE INTERGRADE",
+			"playtime": 0,
+			"platforms": [
+				{
+					"platform": {
+						"id": 187,
+						"name": "PlayStation 5",
+						"slug": "playstation5"
+					}
+				}
+			],
+			"stores": [
+				{
+					"store": {
+						"id": 3,
+						"name": "PlayStation Store",
+						"slug": "playstation-store"
+					}
+				}
+			],
+			"released": "2021-06-10",
+			"tba": false,
+			"background_image": "https://media.rawg.io/media/screenshots/993/9934a06277fa5ce4578dbe9bd587c388.jpg",
+			"rating": 0.0,
+			"rating_top": 0,
+			"ratings": [
+				{ "id": 5, "title": "exceptional", "count": 3, "percent": 100.0 }
+			],
+			"ratings_count": 3,
+			"reviews_text_count": 0,
+			"added": 16,
+			"added_by_status": { "yet": 1, "beaten": 5, "toplay": 10 },
+			"metacritic": 89,
+			"suggestions_count": 256,
+			"updated": "2021-06-11T07:29:56",
+			"id": 586199,
+			"score": null,
+			"clip": null,
+			"tags": [
+				{
+					"id": 64,
+					"name": "Fantasy",
+					"slug": "fantasy",
+					"language": "eng",
+					"games_count": 15139,
+					"image_background": "https://media.rawg.io/media/screenshots/c97/c97b943741f5fbc936fe054d9d58851d.jpg"
+				},
+				{
+					"id": 39,
+					"name": "Building",
+					"slug": "building",
+					"language": "eng",
+					"games_count": 3605,
+					"image_background": "https://media.rawg.io/media/games/e44/e445335e611b4ccf03af71fffcbd30a4.jpg"
+				},
+				{
+					"id": 271,
+					"name": "Remake",
+					"slug": "remake",
+					"language": "eng",
+					"games_count": 1209,
+					"image_background": "https://media.rawg.io/media/games/a4b/a4bb55f42fe837ae7bf1307e7b41cc85.jpg"
+				},
+				{
+					"id": 406,
+					"name": "Story",
+					"slug": "story",
+					"language": "eng",
+					"games_count": 9114,
+					"image_background": "https://media.rawg.io/media/games/1eb/1ebef06e55f756974654c35b9aedb127.jpg"
+				},
+				{
+					"id": 5816,
+					"name": "console",
+					"slug": "console",
+					"language": "eng",
+					"games_count": 1294,
+					"image_background": "https://media.rawg.io/media/games/9c7/9c7dd09596246993169b356d7c1facf0.jpg"
+				},
+				{
+					"id": 4565,
+					"name": "offline",
+					"slug": "offline",
+					"language": "eng",
+					"games_count": 727,
+					"image_background": "https://media.rawg.io/media/screenshots/69e/69e48c5571c954c9206897ab4e2ae31d.jpg"
+				},
+				{
+					"id": 822,
+					"name": "escape",
+					"slug": "escape",
+					"language": "eng",
+					"games_count": 5965,
+					"image_background": "https://media.rawg.io/media/screenshots/51d/51dd944987e4efb74b4bfd9cf0999d40.jpg"
+				},
+				{
+					"id": 5641,
+					"name": "bundle",
+					"slug": "bundle",
+					"language": "eng",
+					"games_count": 331,
+					"image_background": "https://media.rawg.io/media/screenshots/eae/eaeb1472e4ce4838a8accaf383f75e7a.jpg"
+				},
+				{
+					"id": 6706,
+					"name": "connect",
+					"slug": "connect",
+					"language": "eng",
+					"games_count": 277,
+					"image_background": "https://media.rawg.io/media/screenshots/2ea/2ea81924c6403174da63eb613786b10c.jpg"
+				},
+				{
+					"id": 5479,
+					"name": "drive",
+					"slug": "drive",
+					"language": "eng",
+					"games_count": 446,
+					"image_background": "https://media.rawg.io/media/screenshots/41f/41f82d55382b251510508773a634e881_PjSaUug.jpg"
+				}
+			],
+			"esrb_rating": null,
+			"user_game": null,
+			"reviews_count": 3,
+			"community_rating": 0,
+			"saturated_color": "0f0f0f",
+			"dominant_color": "0f0f0f",
+			"short_screenshots": [
+				{
+					"id": -1,
+					"image": "https://media.rawg.io/media/screenshots/993/9934a06277fa5ce4578dbe9bd587c388.jpg"
+				},
+				{
+					"id": 2796965,
+					"image": "https://media.rawg.io/media/screenshots/5a0/5a08e2ebbdaa6b1b1a1f1858a80922f9.jpg"
+				},
+				{
+					"id": 2796966,
+					"image": "https://media.rawg.io/media/screenshots/691/6912544b0b3d3d25e7cca3ab54ae4d7e.jpg"
+				},
+				{
+					"id": 2796967,
+					"image": "https://media.rawg.io/media/screenshots/609/60962852f2a5f11ed325af3ff2c8e881.jpg"
+				},
+				{
+					"id": 2796968,
+					"image": "https://media.rawg.io/media/screenshots/993/9934a06277fa5ce4578dbe9bd587c388.jpg"
+				}
+			],
+			"parent_platforms": [
+				{
+					"platform": { "id": 2, "name": "PlayStation", "slug": "playstation" }
+				}
+			],
+			"genres": [{ "id": 5, "name": "RPG", "slug": "role-playing-games-rpg" }]
+		},
+		{
+			"slug": "super-mario-3d-world-bowsers-fury",
+			"name": "Super Mario 3D World + Bowser’s Fury",
+			"playtime": 0,
+			"platforms": [
+				{
+					"platform": {
+						"id": 7,
+						"name": "Nintendo Switch",
+						"slug": "nintendo-switch"
+					}
+				}
+			],
+			"stores": [
+				{ "store": { "id": 6, "name": "Nintendo Store", "slug": "nintendo" } }
+			],
+			"released": "2021-02-12",
+			"tba": false,
+			"background_image": "https://media.rawg.io/media/games/cd2/cd22f0dcf8f080086c60f77eed7a8a93.jpg",
+			"rating": 4.43,
+			"rating_top": 5,
+			"ratings": [
+				{ "id": 5, "title": "exceptional", "count": 59, "percent": 62.11 },
+				{ "id": 4, "title": "recommended", "count": 26, "percent": 27.37 },
+				{ "id": 3, "title": "meh", "count": 6, "percent": 6.32 },
+				{ "id": 1, "title": "skip", "count": 4, "percent": 4.21 }
+			],
+			"ratings_count": 94,
+			"reviews_text_count": 1,
+			"added": 312,
+			"added_by_status": {
+				"yet": 32,
+				"owned": 43,
+				"beaten": 73,
+				"toplay": 107,
+				"dropped": 15,
+				"playing": 42
+			},
+			"metacritic": 89,
+			"suggestions_count": 344,
+			"updated": "2021-08-31T08:59:06",
+			"id": 487916,
+			"score": null,
+			"clip": null,
+			"tags": [],
+			"esrb_rating": {
+				"id": 1,
+				"name": "Everyone",
+				"slug": "everyone",
+				"name_en": "Everyone",
+				"name_ru": "Для всех"
+			},
+			"user_game": null,
+			"reviews_count": 95,
+			"saturated_color": "0f0f0f",
+			"dominant_color": "0f0f0f",
+			"short_screenshots": [
+				{
+					"id": -1,
+					"image": "https://media.rawg.io/media/games/cd2/cd22f0dcf8f080086c60f77eed7a8a93.jpg"
+				},
+				{
+					"id": 2505836,
+					"image": "https://media.rawg.io/media/screenshots/c8d/c8dc57300ea8c7c1c7b88b0a20ed1119.jpg"
+				},
+				{
+					"id": 2505837,
+					"image": "https://media.rawg.io/media/screenshots/e48/e48e2ed455d8c2ae952f14be783d10bf.jpg"
+				},
+				{
+					"id": 2505838,
+					"image": "https://media.rawg.io/media/screenshots/78a/78a66d5490bb9bc8d3c0e1cf64e5dd16.jpg"
+				},
+				{
+					"id": 2505839,
+					"image": "https://media.rawg.io/media/screenshots/b04/b044dbdf21b74db12b39e4d70f61d84a.jpg"
+				},
+				{
+					"id": 2505840,
+					"image": "https://media.rawg.io/media/screenshots/47c/47c889a3d82a5e3f2c6cc19e71eb58bb.jpg"
+				},
+				{
+					"id": 2505841,
+					"image": "https://media.rawg.io/media/screenshots/ed4/ed483a07ec51bb4b8120a6b988713e8d.jpg"
+				}
+			],
+			"parent_platforms": [
+				{ "platform": { "id": 7, "name": "Nintendo", "slug": "nintendo" } }
+			],
+			"genres": [
+				{ "id": 83, "name": "Platformer", "slug": "platformer" },
+				{ "id": 4, "name": "Action", "slug": "action" }
+			]
+		}
+	],
+	"user_platforms": false
+}
