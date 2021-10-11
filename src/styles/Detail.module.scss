@@ -8,6 +8,10 @@
 		display: flex;
 		width: 80vw;
 		margin: 20px 0px;
+
+		@media (max-width: 599px) {
+			flex-direction: column;
+		}
 	}
 
 	.leftColumn {
