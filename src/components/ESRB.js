@@ -11,8 +11,12 @@ export default function ESRB({ rating }) {
 	};
 
 	return (
-		<div className={styles.esrb}>
-			<img src={logos[rating.id]} alt={rating.name} />
-		</div>
+		<>
+			{rating && (
+				<div className={styles.esrb}>
+					<img src={logos[rating.id]} alt={rating.name} />
+				</div>
+			)}
+		</>
 	);
 }

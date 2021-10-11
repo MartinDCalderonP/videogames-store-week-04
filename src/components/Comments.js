@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/Comments.module.scss';
+import useFetch from '../hooks/useFetch';
 import Spinner from './Spinner';
 
 export default function Comments({ postId }) {
 	const fetchUrl = `https://videogames-store-db.herokuapp.com/comments?postId=${postId}`;
-	const [loading, setLoading] = useState(true);
-	const [comments, setComments] = useState([]);
+	const { data, loading, fetchData } = useFetch(fetchUrl, 'db');
 	const [commentAreaValue, setCommentAreaValue] = useState(undefined);
-
-	useEffect(() => {
-		const getComments = async () => {
-			setLoading(true);
-
-			try {
-				const response = await fetch(fetchUrl);
-				const result = await response.json();
-				setComments(result);
-				setLoading(false);
-			} catch (err) {
-				console.log(`${err}. Try again later.`);
-			}
-		};
-
-		getComments();
-	}, []);
 
 	const handleCommentAreaValueChange = (e) => {
 		setCommentAreaValue(e.target.value);
@@ -55,21 +38,8 @@ export default function Comments({ postId }) {
 			const result = await response.json();
 
 			if (result) {
-				getComments();
+				fetchData();
 			}
-		} catch (err) {
-			console.log(`${err}. Try again later.`);
-		}
-	};
-
-	const getComments = async () => {
-		setLoading(true);
-
-		try {
-			const response = await fetch(fetchUrl);
-			const result = await response.json();
-			setComments(result);
-			setLoading(false);
 		} catch (err) {
 			console.log(`${err}. Try again later.`);
 		}
@@ -101,16 +71,14 @@ export default function Comments({ postId }) {
 				{loading && <Spinner />}
 
 				{!loading &&
-					comments?.length > 0 &&
-					comments?.map((item) => (
+					data?.length > 0 &&
+					data?.map((item) => (
 						<div key={`comment${item.id}`}>
 							<p>{item.comment}</p>
 						</div>
 					))}
 
-				{!loading && comments?.length === 0 && (
-					<h3>There are no comments yet.</h3>
-				)}
+				{!loading && data?.length === 0 && <h3>There are no comments yet.</h3>}
 			</div>
 		</>
 	);

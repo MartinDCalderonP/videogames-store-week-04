@@ -1,41 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Carousel.module.scss';
-import API_KEY from '../Keys';
+import useFetch from '../hooks/useFetch';
 import Spinner from './Spinner';
 import Chevron from './Chevron';
-import data from '../jsons/carousel.json';
 
 export default function Carousel({ toDetail }) {
-	const fetchUrl = `https://api.rawg.io/api/games?&dates=2021-01-01,2021-10-01&page_size=3&ordering=-metacritic&key=${API_KEY}`;
-	const [loading, setLoading] = useState(false);
-	const [posts, setPosts] = useState(data);
+	const fetchUrl = `https://api.rawg.io/api/games?&dates=2021-01-01,2021-10-01&page_size=3&ordering=-metacritic&key=`;
+	const { data, loading } = useFetch(fetchUrl);
 	const [current, setCurrent] = useState(0);
 
 	useEffect(() => {
-		const getPosts = async () => {
-			setLoading(true);
-
-			try {
-				const response = await fetch(fetchUrl);
-				const result = await response.json();
-				setPosts(result);
-				setLoading(false);
-			} catch (err) {
-				console.log(`${err}. Try again later.`);
-			}
-		};
-
-		// getPosts();
-	}, [fetchUrl]);
-
-	useEffect(() => {
-		posts?.results.length > 0 &&
+		data?.results.length > 0 &&
 			setInterval(() => {
 				setCurrent((current) =>
-					current === posts?.results.length - 1 ? 0 : current + 1
+					current === data?.results.length - 1 ? 0 : current + 1
 				);
 			}, 5000);
-	}, [posts?.results.length]);
+	}, [data?.results.length]);
 
 	const handleCarouselItemClick = (postId) => {
 		toDetail(postId);
@@ -57,13 +38,13 @@ export default function Carousel({ toDetail }) {
 
 	const handlePreviousClick = () => {
 		setCurrent((current) =>
-			current === 0 ? posts?.results.length - 1 : current - 1
+			current === 0 ? data?.results.length - 1 : current - 1
 		);
 	};
 
 	const handleNextClick = () => {
 		setCurrent((current) =>
-			current === posts?.results.length - 1 ? 0 : current + 1
+			current === data?.results.length - 1 ? 0 : current + 1
 		);
 	};
 
@@ -75,7 +56,7 @@ export default function Carousel({ toDetail }) {
 		<>
 			{loading && <Spinner />}
 
-			{!loading && posts && (
+			{!loading && data && (
 				<div className={styles.carousel}>
 					<Chevron
 						className={styles.previous}
@@ -85,16 +66,16 @@ export default function Carousel({ toDetail }) {
 
 					<div
 						className={`${styles.carouselItem} ${styles.fade}`}
-						onClick={() => handleCarouselItemClick(posts?.results[current].id)}
+						onClick={() => handleCarouselItemClick(data?.results[current].id)}
 					>
-						<h1>{uppercaseTitle(posts?.results[current].name)}</h1>
+						<h1>{uppercaseTitle(data?.results[current].name)}</h1>
 
 						<div className={styles.triangle}></div>
 						<h2>Top Rated </h2>
 
 						<img
-							src={posts?.results[current].background_image}
-							alt={uppercaseTitle(posts?.results[current].name)}
+							src={data?.results[current].background_image}
+							alt={uppercaseTitle(data?.results[current].name)}
 						/>
 					</div>
 
@@ -105,7 +86,7 @@ export default function Carousel({ toDetail }) {
 					/>
 
 					<div className={styles.dotsContainer}>
-						{posts?.results.map((item, i) => {
+						{data?.results.map((item, i) => {
 							return (
 								<span
 									className={

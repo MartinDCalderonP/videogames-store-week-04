@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/Detail.module.scss';
-import API_KEY from '../Keys';
+import useFetch from '../hooks/useFetch';
 import Spinner from '../components/Spinner';
 import Chevron from '../components/Chevron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,30 +10,11 @@ import MinimumRequirements from '../components/MinimumRequirements';
 import PlatformIcons from '../components/PlatformIcons';
 import ESRB from '../components/ESRB';
 import Comments from '../components/Comments';
-import data from '../jsons/post.json';
 
 export default function Detail({ postId }) {
-	const fetchUrl = `https://api.rawg.io/api/games/${postId}?key=${API_KEY}`;
-	const [loading, setLoading] = useState(false);
-	const [post, setPost] = useState(data);
+	const fetchUrl = `https://api.rawg.io/api/games/${postId}?key=`;
+	const { data, loading } = useFetch(fetchUrl);
 	const [expandedText, setExpandedText] = useState(false);
-
-	useEffect(() => {
-		const getPost = async () => {
-			setLoading(true);
-
-			try {
-				const response = await fetch(fetchUrl);
-				const result = await response.json();
-				setPost(result);
-				setLoading(false);
-			} catch (err) {
-				console.log(`${err}. Try again later.`);
-			}
-		};
-
-		// getPost();
-	}, [fetchUrl]);
 
 	const handleExpandText = () => {
 		setExpandedText(!expandedText);
@@ -51,15 +32,15 @@ export default function Detail({ postId }) {
 		<div className={styles.container}>
 			{loading && <Spinner />}
 
-			{!loading && post && (
+			{!loading && data && (
 				<>
-					<h1>{post.name}</h1>
+					<h1>{data.name}</h1>
 
 					<div className={styles.row}>
 						<div className={styles.leftColumn}>
 							<div className={styles.image}>
-								<img src={post.background_image} alt={post.name} />
-								<h1>{post.reactions[0]}</h1>
+								<img src={data.background_image} alt={data.name} />
+								<h1>{data?.reactions[0]}</h1>
 							</div>
 
 							<div
@@ -67,7 +48,7 @@ export default function Detail({ postId }) {
 									!expandedText ? '' : styles.active
 								}`}
 							>
-								<p>{post.description_raw}</p>
+								<p>{data.description_raw}</p>
 
 								<Chevron
 									className={styles.expandText}
@@ -80,38 +61,40 @@ export default function Detail({ postId }) {
 						<div className={styles.dividerColumn}></div>
 
 						<div className={styles.rightColumn}>
-							<RatingStars rating={post.rating} top={post.rating_top} />
+							<RatingStars rating={data.rating} top={data.rating_top} />
 
 							<div className={styles.information}>
 								<h3>Game Details</h3>
 
 								<p>
 									<b>Title: </b>
-									{post.name_original}
+									{data.name_original}
 								</p>
 
 								<p>
 									<b>Genre: </b>
-									{getNamesFromArray(post.genres)}
+									{getNamesFromArray(data.genres)}
 								</p>
 
 								<p>
 									<b>Developer: </b>
-									{getNamesFromArray(post.developers)}
+									{getNamesFromArray(data.developers)}
 								</p>
 
-								<p>
-									<b>Publisher: </b>
-									{getNamesFromArray(post.publishers)}
-								</p>
+								{data?.publishers.length > 0 && (
+									<p>
+										<b>Publisher: </b>
+										{getNamesFromArray(data.publishers)}
+									</p>
+								)}
 
-								<MinimumRequirements platforms={post.platforms} />
+								<MinimumRequirements platforms={data.platforms} />
 
-								<PlatformIcons platforms={post.parent_platforms} />
+								<PlatformIcons platforms={data.parent_platforms} />
 
-								<ESRB rating={post.esrb_rating} />
+								<ESRB rating={data.esrb_rating} />
 
-								<a href={post.website}>
+								<a href={data.website}>
 									Official website
 									<FontAwesomeIcon icon={faExternalLinkAlt} />
 								</a>
@@ -119,7 +102,7 @@ export default function Detail({ postId }) {
 						</div>
 					</div>
 
-					<Comments postId={post.id} />
+					<Comments postId={data.id} />
 				</>
 			)}
 		</div>

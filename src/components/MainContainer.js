@@ -1,40 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/MainContainer.module.scss';
-import API_KEY from '../Keys';
-import Chevron from './Chevron';
+import useFetch from '../hooks/useFetch';
 import Spinner from './Spinner';
+import Chevron from './Chevron';
 import Card from './Card';
-import data from '../jsons/posts.json';
 
 export default function MainContainer({ toDetail }) {
-	const postsUrl = `https://api.rawg.io/api/games?page_size=8&key=${API_KEY}`;
+	const postsUrl = `https://api.rawg.io/api/games?page_size=8&key=`;
 	const [fetchUrl, setFetchUrl] = useState(postsUrl);
-	const [loading, setLoading] = useState(false);
-	const [posts, setPosts] = useState(data);
-
-	useEffect(() => {
-		const getPosts = async () => {
-			setLoading(true);
-
-			try {
-				const response = await fetch(fetchUrl);
-				const result = await response.json();
-				setPosts(result);
-				setLoading(false);
-			} catch (err) {
-				console.log(`${err}. Try again later.`);
-			}
-		};
-
-		// getPosts();
-	}, [fetchUrl]);
+	const { data, loading } = useFetch(fetchUrl);
 
 	const handlePreviousClick = () => {
-		setFetchUrl(posts.previous);
+		setFetchUrl(data.previous);
 	};
 
 	const handleNextClick = () => {
-		setFetchUrl(posts.next);
+		setFetchUrl(data.next);
 	};
 
 	const handleToDetail = (postId) => {
@@ -43,7 +24,7 @@ export default function MainContainer({ toDetail }) {
 
 	return (
 		<div className={styles.mainContainer}>
-			{posts?.previous && (
+			{data?.previous && (
 				<Chevron
 					className={styles.previous}
 					onClick={handlePreviousClick}
@@ -55,7 +36,7 @@ export default function MainContainer({ toDetail }) {
 				{loading && <Spinner />}
 
 				{!loading &&
-					posts?.results.map((post) => (
+					data?.results.map((post) => (
 						<Card
 							key={post.id}
 							name={post.name}
@@ -65,7 +46,7 @@ export default function MainContainer({ toDetail }) {
 					))}
 			</div>
 
-			{posts?.next && (
+			{data?.next && (
 				<Chevron
 					className={styles.next}
 					onClick={handleNextClick}
