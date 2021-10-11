@@ -5,13 +5,15 @@ import Chevron from './Chevron';
 import Card from './Card';
 
 export default function MainContainer({ toDetail }) {
-	const postsUrl = 'https://api.rawg.io/api/games?page_size=8&key=' + API_KEY;
+	const postsUrl = `https://api.rawg.io/api/games?page_size=8&key=${API_KEY}`;
 	const [fetchUrl, setFetchUrl] = useState(postsUrl);
+	const [posts, setPosts] = useState(undefined);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const getPosts = async () => {
 			setLoading(true);
+
 			try {
 				const response = await fetch(fetchUrl);
 				const result = await response.json();
