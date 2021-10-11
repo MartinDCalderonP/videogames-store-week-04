@@ -3,18 +3,9 @@ import styles from '../styles/Detail.module.scss';
 import API_KEY from '../Keys';
 import Chevron from '../components/Chevron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	faStar as solidStar,
-	faDesktop,
-	faExternalLinkAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import { faStar as outlineStar } from '@fortawesome/free-regular-svg-icons';
-import {
-	faPlaystation,
-	faXbox,
-	faApple,
-} from '@fortawesome/free-brands-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import RatingStars from '../components/RatingStars';
+import PlatformIcons from '../components/PlatformIcons';
 import ESRB from '../components/ESRB';
 import data from '../jsons/post.json';
 
@@ -87,26 +78,6 @@ export default function Detail({ postId }) {
 		return spanLines;
 	};
 
-	const showPlatformsIcons = (platforms) => {
-		let platformsNames = [];
-		let iconsToShow = [];
-
-		platforms?.map((item) => platformsNames.push(item.platform.name));
-
-		const icons = {
-			PC: <FontAwesomeIcon key="pcIcon" icon={faDesktop} />,
-			PlayStation: <FontAwesomeIcon key="psIcon" icon={faPlaystation} />,
-			Xbox: <FontAwesomeIcon key="xboxIcon" icon={faXbox} />,
-			'Apple Macintosh': <FontAwesomeIcon key="appleIcon" icon={faApple} />,
-		};
-
-		for (let i = 0; i < platformsNames.length; i++) {
-			iconsToShow.push(icons[platformsNames[i]]);
-		}
-
-		return iconsToShow;
-	};
-
 	return (
 		<div className={styles.container}>
 			{loading && <h1>Loading...</h1>}
@@ -167,9 +138,7 @@ export default function Detail({ postId }) {
 
 								{showMinimumRequirements(post.platforms)}
 
-								<div className={styles.platformsIcons}>
-									{showPlatformsIcons(post.parent_platforms)}
-								</div>
+								<PlatformIcons platforms={post.parent_platforms} />
 
 								<ESRB rating={post.esrb_rating} />
 
