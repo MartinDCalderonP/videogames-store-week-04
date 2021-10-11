@@ -5,6 +5,7 @@ import Chevron from '../components/Chevron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import RatingStars from '../components/RatingStars';
+import MinimumRequirements from '../components/MinimumRequirements';
 import PlatformIcons from '../components/PlatformIcons';
 import ESRB from '../components/ESRB';
 import data from '../jsons/post.json';
@@ -42,40 +43,6 @@ export default function Detail({ postId }) {
 		array?.map((item) => names.push(item.name));
 
 		return names.join(', ');
-	};
-
-	const showMinimumRequirements = (platforms) => {
-		let lines = [];
-		let platform = platforms.find((item) => item.platform.name === 'PC');
-
-		if (platform?.requirements.minimum) {
-			let minimumRequirements = platform.requirements.minimum
-				.replaceAll(':', ': ')
-				.split('\n');
-
-			lines.push(
-				<p>
-					<b>PC Requirements: </b>
-					{addLinesToMinimumRequirements(minimumRequirements)}
-				</p>
-			);
-
-			return lines;
-		}
-	};
-
-	const addLinesToMinimumRequirements = (minimumRequirements) => {
-		let spanLines = [];
-
-		for (let i = 0; i < minimumRequirements.length; i++) {
-			spanLines.push(
-				<span className={styles.lines} key={`line${i}`}>
-					- {minimumRequirements[i]}.
-				</span>
-			);
-		}
-
-		return spanLines;
 	};
 
 	return (
@@ -136,7 +103,7 @@ export default function Detail({ postId }) {
 									{getNamesFromArray(post.publishers)}
 								</p>
 
-								{showMinimumRequirements(post.platforms)}
+								<MinimumRequirements platforms={post.platforms} />
 
 								<PlatformIcons platforms={post.parent_platforms} />
 
