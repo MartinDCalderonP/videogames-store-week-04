@@ -73,6 +73,12 @@ export default function Carousel({ toDetail }) {
 		<div className={styles.carousel}>
 			{loading && <h1>Loading...</h1>}
 
+			<Chevron
+				className={styles.previous}
+				onClick={handlePreviousClick}
+				orientation="left"
+			/>
+
 			{posts && (
 				<div
 					className={`${styles.carouselItem} ${styles.fade}`}
@@ -89,12 +95,6 @@ export default function Carousel({ toDetail }) {
 					/>
 				</div>
 			)}
-
-			<Chevron
-				className={styles.previous}
-				onClick={handlePreviousClick}
-				orientation="left"
-			/>
 
 			<Chevron
 				className={styles.next}
