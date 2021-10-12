@@ -10,12 +10,21 @@ export default function Carousel({ toDetail }) {
 	const [current, setCurrent] = useState(0);
 
 	useEffect(() => {
-		data?.results.length > 0 &&
+		let isMounted = true;
+
+		if (data?.results.length > 0) {
 			setInterval(() => {
-				setCurrent((current) =>
-					current === data?.results.length - 1 ? 0 : current + 1
-				);
+				if (isMounted) {
+					setCurrent((current) =>
+						current === data?.results.length - 1 ? 0 : current + 1
+					);
+				}
 			}, 5000);
+		}
+
+		return () => {
+			isMounted = false;
+		};
 	}, [data?.results.length]);
 
 	const handleCarouselItemClick = (postId) => {
