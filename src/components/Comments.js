@@ -65,6 +65,8 @@ export default function Comments({ postId }) {
 				</button>
 			</div>
 
+			<div className={styles.divider} />
+
 			<div className={styles.commentsContainer}>
 				<h3>Comments:</h3>
 

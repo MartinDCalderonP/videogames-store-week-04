@@ -40,10 +40,18 @@
 	}
 }
 
+.divider {
+	width: 85%;
+	border-bottom: 2px solid darkblue;
+
+	@media (max-width: 599px) {
+		width: 100%;
+	}
+}
+
 .commentsContainer {
 	width: 80vw;
 	margin-bottom: 50px;
-	border-top: 2px solid darkblue;
 	padding-top: 20px;
 
 	> * {
