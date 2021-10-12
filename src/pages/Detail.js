@@ -40,7 +40,6 @@ export default function Detail({ postId }) {
 						<div className={styles.leftColumn}>
 							<div className={styles.image}>
 								<img src={data.background_image} alt={data.name} />
-								<h1>{data?.reactions[0]}</h1>
 							</div>
 
 							<div
