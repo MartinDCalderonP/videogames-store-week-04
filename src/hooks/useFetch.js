@@ -19,8 +19,17 @@ const useFetch = (fetchUrl, db) => {
 	};
 
 	useEffect(() => {
+		const fetchData = async () => {
+			fetch(fetchUrl)
+				.then((res) => res.json())
+				.then((result) => {
+					setData(result);
+					setLoading(false);
+				});
+		};
+
 		fetchData();
-	}, []);
+	}, [fetchUrl]);
 
 	return { data, loading, fetchData };
 };
