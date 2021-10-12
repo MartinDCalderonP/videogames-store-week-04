@@ -16,9 +16,13 @@ export default function RatingStars({ rating, top }) {
 	}
 
 	return (
-		<div className={styles.rating}>
-			<h2>{rating}</h2>
-			<div>{ratingStars}</div>
-		</div>
+		<>
+			{rating > 0 && (
+				<div className={styles.rating}>
+					<h2>{rating}</h2>
+					<div>{ratingStars}</div>
+				</div>
+			)}
+		</>
 	);
 }
