@@ -1,3 +1,3 @@
-export const API_KEY = process.env.API_KEY;
+export const API_KEY = process.env.KEY;
 
 export default API_KEY;
