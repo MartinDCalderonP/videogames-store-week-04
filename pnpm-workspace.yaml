@@ -1,7 +1,10 @@
 overrides:
+  jsonpath@<1.2.0: '>=1.2.0'
   lodash@>=4.0.0 <=4.17.22: '>=4.17.23'
   minimatch: ^3.0.5
   nth-check: ^2.0.1
   postcss: 8.4.31
   qs@<6.14.1: '>=6.14.1'
   webpack-dev-server: 5.2.1
+  webpack@>=5.49.0 <5.104.0: '>=5.104.0'
+  webpack@>=5.49.0 <=5.104.0: '>=5.104.1'
